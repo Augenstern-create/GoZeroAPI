@@ -1,0 +1,29 @@
+syntax = "v1"
+
+type User {
+	Id   int64  `json:"id"`
+	Name string `json:"name"`
+	Age  int    `json:"age"`
+}
+
+type CreateUserReq {
+	Name string `json:"name"`
+	Age  int    `json:"age"`
+}
+
+type UploadResp {
+	Message string `json:"message"`
+	File    string `json:"file"`
+}
+
+service user-api {
+	@handler GetUser
+	get /users/:id returns (User)
+
+	@handler CreateUser
+	post /users returns (User)
+
+	@handler UploadFile
+	post /upload returns (UploadResp)
+}
+
